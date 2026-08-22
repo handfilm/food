@@ -69,5 +69,93 @@
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
     }
+
+    // ---------------------------------------------------------
+    // Scroll reveal for "The Food of Bengal" editorial section.
+    // Progressive enhancement only — .reveal elements are fully
+    // visible with no JS or with prefers-reduced-motion set.
+    // ---------------------------------------------------------
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+      var revealEls = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+      revealEls.forEach(function (el) { observer.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }
+
+    initTilt();
   });
+
+  // ---------------------------------------------------------
+  // Subtle pointer-reactive 3D tilt + colour sheen.
+  // Adds `.tilt-3d` to the existing card surfaces and drives the
+  // --mx / --my / --rx / --ry custom properties on pointermove.
+  // Pure enhancement: no markup, layout or colours are changed,
+  // and it quietly no-ops under reduced motion or on touch.
+  // ---------------------------------------------------------
+  function initTilt() {
+    var targets = document.querySelectorAll('.card, .fish-story, .chingri-card, .order-card');
+    if (!targets.length) return;
+
+    targets.forEach(function (el) { el.classList.add('tilt-3d', 'ambient'); });
+
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover = window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (prefersReducedMotion || !canHover) return;
+
+    var MAX_TILT_X = 6;   // degrees — kept small so it reads as "subtle"
+    var MAX_TILT_Y = 8;
+
+    targets.forEach(function (el) {
+      var raf = null;
+
+      function onMove(e) {
+        var rect = el.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        x = Math.min(1, Math.max(0, x));
+        y = Math.min(1, Math.max(0, y));
+
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+          el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+          el.style.setProperty('--rx', ((0.5 - y) * MAX_TILT_X).toFixed(2) + 'deg');
+          el.style.setProperty('--ry', ((x - 0.5) * MAX_TILT_Y).toFixed(2) + 'deg');
+          el.classList.add('is-tilting');
+        });
+      }
+
+      function onLeave() {
+        if (raf) cancelAnimationFrame(raf);
+        el.classList.remove('is-tilting');
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+        el.style.setProperty('--mx', '50%');
+        el.style.setProperty('--my', '50%');
+      }
+
+      el.addEventListener('pointermove', onMove);
+      el.addEventListener('pointerleave', onLeave);
+      el.addEventListener('pointercancel', onLeave);
+    });
+  }
 })();

@@ -4,6 +4,16 @@ cheesecake-001.jpg   → Signature Almond Cheesecake
 chaat-001.jpg        → Signature Singara Chaat
 jar-001.jpg          → Chocolate Jar Dessert
 
+Optional — for "The Food of Bengal" editorial section (Layer 02).
+The section works fine without these; each one just shows a
+placeholder until a real photo is added:
+
+tangra-001.jpg       → Tangra story
+pabda-001.jpg        → Pabda story
+boal-001.jpg         → Boal story
+pangash-001.jpg      → Pangash story
+hilsa-001.jpg        → Hilsa large feature image (wide/cinematic works best)
+
 Notes:
 
 - Filenames are case-sensitive on most web servers. Keep them lowercase exactly as above.
