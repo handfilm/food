@@ -99,7 +99,69 @@
     }
 
     initTilt();
+    initSmoothScroll();
   });
+
+  // ---------------------------------------------------------
+  // Smooth navigation anchor links
+  // Ensures all anchor links (navigation, CTA buttons, logo)
+  // scroll gracefully to their respective sections with
+  // dynamic sticky header offset compensation.
+  // ---------------------------------------------------------
+  function initSmoothScroll() {
+    var navLinks = document.querySelectorAll('a[href^="#"]');
+    var header = document.querySelector('header');
+
+    function getHeaderOffset() {
+      if (!header) return 80;
+      var rect = header.getBoundingClientRect();
+      var styles = window.getComputedStyle(header);
+      var marginTop = parseFloat(styles.marginTop) || 0;
+      return rect.height + marginTop + 12;
+    }
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        if (!href || href === '#') return;
+
+        var targetId = href.substring(1);
+        if (targetId === 'top') {
+          e.preventDefault();
+          var prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+          });
+          if (history.pushState) {
+            history.pushState(null, null, '#top');
+          }
+          return;
+        }
+
+        var targetEl = document.getElementById(targetId) || document.querySelector(href);
+        if (!targetEl) return;
+
+        e.preventDefault();
+        var prefersReducedMotion = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var headerOffset = getHeaderOffset();
+        var elementPosition = targetEl.getBoundingClientRect().top;
+        var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+
+        if (history.pushState) {
+          history.pushState(null, null, href);
+        }
+      });
+    });
+  }
 
   // ---------------------------------------------------------
   // Subtle pointer-reactive 3D tilt + colour sheen.

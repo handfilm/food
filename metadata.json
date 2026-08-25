@@ -1,0 +1,8 @@
+{
+  "name": "Hands & Head Food",
+  "description": "Small-batch cloud kitchen in Mirpur, Dhaka — cheesecake, singara chaat, jar dessert, and Bengal food archives.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
