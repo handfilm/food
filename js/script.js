@@ -8,9 +8,48 @@
 
 (function () {
   var STORAGE_KEY = 'hh-lang';
+  var BATCH_STORAGE_KEY = 'hh-batch-stock-v2';
 
   var currentLightboxIndex = -1;
   var visibleGalleryCards = [];
+
+  // Default initial configuration for today's kitchen batches
+  var DEFAULT_BATCH_DATA = {
+    'HH-01': { total: 10, remaining: 3, nameEn: 'Signature Almond Cheesecake', nameBn: 'সিগনেচার আমন্ড চিজকেক' },
+    'HH-02': { total: 24, remaining: 7, nameEn: 'Signature Singara Chaat', nameBn: 'সিগনেচার সিঙ্গারা চাট' },
+    'HH-03': { total: 16, remaining: 4, nameEn: 'Chocolate Jar Dessert', nameBn: 'চকোলেট জার ডেজার্ট' }
+  };
+
+  // Toast notification management (shared across sharing and batch reservations)
+  var toastTimeout = null;
+  function showToast(message, icon) {
+    var toast = document.getElementById('share-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'share-toast';
+      toast.className = 'share-toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toast);
+    }
+    if (toastTimeout) {
+      clearTimeout(toastTimeout);
+    }
+    var symbol = icon || '✓';
+    toast.innerHTML = '<span class="toast-icon">' + symbol + '</span><span>' + message + '</span>';
+    toast.classList.add('active');
+
+    toastTimeout = setTimeout(function () {
+      toast.classList.remove('active');
+    }, 3200);
+  }
+
+  function toBengaliDigits(num) {
+    var bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    return String(num).replace(/[0-9]/g, function (w) {
+      return bnDigits[+w];
+    });
+  }
 
   function applyLang(lang) {
     document.documentElement.setAttribute('lang', lang === 'bn' ? 'bn' : 'en');
@@ -41,6 +80,9 @@
     if (currentLightboxIndex >= 0 && visibleGalleryCards[currentLightboxIndex]) {
       renderLightboxCard(visibleGalleryCards[currentLightboxIndex], lang);
     }
+
+    // Update dynamic menu stock urgency & remaining items labels
+    updateMenuStockDisplay(lang);
 
     try {
       localStorage.setItem(STORAGE_KEY, lang);
@@ -82,6 +124,8 @@
     initTilt();
     initSmoothScroll();
     initGallery();
+    initStorySharing();
+    initMenuBatchStock();
   });
 
   // ---------------------------------------------------------
@@ -423,6 +467,290 @@
       } else if (e.key === 'ArrowRight') {
         showNext();
       }
+    });
+  }
+
+  // ---------------------------------------------------------
+  // Social Media Sharing for Food Story Sections
+  // Enables sharing specific food stories to WhatsApp, Facebook,
+  // X (Twitter), or copying a deep-link directly to clipboard.
+  // ---------------------------------------------------------
+  function initStorySharing() {
+    var shareBars = document.querySelectorAll('.story-share-bar');
+    if (!shareBars.length) return;
+
+    function getStoryDetails(bar) {
+      var lang = currentLang();
+      var storyId = bar.getAttribute('data-story-id') || '';
+      var title = (lang === 'bn' ? bar.getAttribute('data-story-title-bn') : bar.getAttribute('data-story-title-en')) || 'Hands & Head Food Story';
+      var desc = (lang === 'bn' ? bar.getAttribute('data-story-desc-bn') : bar.getAttribute('data-story-desc-en')) || '';
+
+      // Construct deep link URL
+      var baseUrl = window.location.origin + window.location.pathname;
+      var deepUrl = baseUrl.replace(/\/$/, '') + '#' + storyId;
+
+      return {
+        id: storyId,
+        title: title,
+        desc: desc,
+        url: deepUrl,
+        lang: lang
+      };
+    }
+
+    shareBars.forEach(function (bar) {
+      // WhatsApp button
+      var waBtn = bar.querySelector('.share-wa');
+      if (waBtn) {
+        waBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var story = getStoryDetails(bar);
+          var shareText = story.title + '\n' + story.desc + '\n' + story.url;
+          var waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText);
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      // Facebook button
+      var fbBtn = bar.querySelector('.share-fb');
+      if (fbBtn) {
+        fbBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var story = getStoryDetails(bar);
+          var fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(story.url) + '&quote=' + encodeURIComponent(story.title + ' — ' + story.desc);
+          window.open(fbUrl, '_blank', 'noopener,noreferrer,width=600,height=500');
+        });
+      }
+
+      // X (Twitter) button
+      var xBtn = bar.querySelector('.share-x');
+      if (xBtn) {
+        xBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var story = getStoryDetails(bar);
+          var tweetText = story.title + ' — ' + story.desc;
+          var xUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetText) + '&url=' + encodeURIComponent(story.url);
+          window.open(xUrl, '_blank', 'noopener,noreferrer,width=600,height=450');
+        });
+      }
+
+      // Copy Link button
+      var copyBtn = bar.querySelector('.share-copy');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var story = getStoryDetails(bar);
+          var textSpan = copyBtn.querySelector('.copy-text');
+          var originalEn = textSpan ? textSpan.getAttribute('data-en') : 'Copy Link';
+          var originalBn = textSpan ? textSpan.getAttribute('data-bn') : 'লিংক কপি';
+
+          function handleSuccess() {
+            copyBtn.classList.add('copied');
+            if (textSpan) {
+              textSpan.textContent = story.lang === 'bn' ? 'কপি হয়েছে!' : 'Copied!';
+            }
+            var toastMsg = story.lang === 'bn'
+              ? 'গল্পের লিংক ক্লিপবোর্ডে কপি করা হয়েছে'
+              : 'Story link copied to clipboard!';
+            showToast(toastMsg, '✓');
+
+            setTimeout(function () {
+              copyBtn.classList.remove('copied');
+              if (textSpan) {
+                textSpan.textContent = story.lang === 'bn' ? originalBn : originalEn;
+              }
+            }, 2200);
+          }
+
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(story.url).then(handleSuccess).catch(function () {
+              fallbackCopy(story.url, handleSuccess);
+            });
+          } else {
+            fallbackCopy(story.url, handleSuccess);
+          }
+        });
+      }
+    });
+
+    function fallbackCopy(text, callback) {
+      var tempInput = document.createElement('input');
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      tempInput.style.pointerEvents = 'none';
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+      try {
+        var successful = document.execCommand('copy');
+        if (successful && typeof callback === 'function') {
+          callback();
+        }
+      } catch (err) {
+        console.warn('Unable to copy', err);
+      }
+      document.body.removeChild(tempInput);
+    }
+  }
+
+  // ---------------------------------------------------------
+  // Dynamic Menu Card Batch Stock & Urgency System
+  // Creates authentic urgency for limited daily production batches
+  // by calculating remaining items, updating progress meters,
+  // translating numerals between EN and BN, and managing reservations.
+  // ---------------------------------------------------------
+  function getBatchStockState() {
+    try {
+      var saved = localStorage.getItem(BATCH_STORAGE_KEY);
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        var todayKey = new Date().toDateString();
+        if (parsed && parsed.date === todayKey && parsed.items) {
+          return parsed.items;
+        }
+      }
+    } catch (e) {
+      /* ignore */
+    }
+
+    var initial = {};
+    for (var code in DEFAULT_BATCH_DATA) {
+      initial[code] = {
+        total: DEFAULT_BATCH_DATA[code].total,
+        remaining: DEFAULT_BATCH_DATA[code].remaining
+      };
+    }
+    saveBatchStockState(initial);
+    return initial;
+  }
+
+  function saveBatchStockState(items) {
+    try {
+      var payload = {
+        date: new Date().toDateString(),
+        items: items
+      };
+      localStorage.setItem(BATCH_STORAGE_KEY, JSON.stringify(payload));
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  function updateMenuStockDisplay(lang) {
+    if (!lang) lang = currentLang();
+    var stockState = getBatchStockState();
+    var cards = document.querySelectorAll('.card[data-batch-code]');
+
+    cards.forEach(function (card) {
+      var batchCode = card.getAttribute('data-batch-code');
+      var itemData = stockState[batchCode] || DEFAULT_BATCH_DATA[batchCode];
+      if (!itemData) return;
+
+      var total = itemData.total;
+      var remaining = Math.max(0, itemData.remaining);
+      var claimed = total > 0 ? Math.round(((total - remaining) / total) * 100) : 0;
+      var isLow = remaining <= 4;
+
+      // Urgency styling toggle
+      card.classList.toggle('card-stock-low', isLow);
+
+      // 1. Photo Pill Badge
+      var pill = card.querySelector('.batch-stock-pill');
+      var pillText = card.querySelector('.stock-pill-text');
+      if (pill) {
+        pill.classList.toggle('stock-low', isLow);
+      }
+      if (pillText) {
+        var numStr = lang === 'bn' ? toBengaliDigits(remaining) : String(remaining);
+        if (lang === 'bn') {
+          pillText.textContent = isLow
+            ? 'আজ মাত্র ' + numStr + 'টি বাকি'
+            : numStr + 'টি পোরশন বাকি';
+        } else {
+          pillText.textContent = isLow
+            ? 'Only ' + numStr + ' left today'
+            : numStr + ' items left';
+        }
+      }
+
+      // 2. Dynamic Batch Status Bar
+      var statusBar = card.querySelector('.batch-stock-status');
+      if (statusBar) {
+        statusBar.classList.toggle('stock-low', isLow);
+      }
+
+      var leadText = card.querySelector('.stock-lead-text');
+      if (leadText) {
+        var tmpl = lang === 'bn'
+          ? (leadText.getAttribute('data-bn-tmpl') || 'আজকের ব্যাচে মাত্র <strong>{remaining}টি</strong> অবশিষ্ট')
+          : (leadText.getAttribute('data-en-tmpl') || 'Only <strong>{remaining} items</strong> left in today\'s batch');
+        var remFormatted = lang === 'bn' ? toBengaliDigits(remaining) : String(remaining);
+        leadText.innerHTML = tmpl.replace('{remaining}', remFormatted);
+      }
+
+      var claimedTag = card.querySelector('.batch-claimed-tag');
+      if (claimedTag) {
+        var claimedTmpl = lang === 'bn'
+          ? (claimedTag.getAttribute('data-bn-tmpl') || '{claimed}% শেষ')
+          : (claimedTag.getAttribute('data-en-tmpl') || '{claimed}% claimed');
+        var claimedFormatted = lang === 'bn' ? toBengaliDigits(claimed) : String(claimed);
+        claimedTag.textContent = claimedTmpl.replace('{claimed}', claimedFormatted);
+      }
+
+      // Progress bar fill & ARIA
+      var progressTrack = card.querySelector('.batch-progress-track');
+      var progressFill = card.querySelector('.batch-progress-fill');
+      if (progressTrack) {
+        progressTrack.setAttribute('aria-valuenow', remaining);
+        progressTrack.setAttribute('aria-valuemax', total);
+      }
+      if (progressFill) {
+        progressFill.style.width = Math.min(100, Math.max(10, claimed)) + '%';
+      }
+
+      // 3. Ticket specification row
+      var ticketCap = card.querySelector('.batch-ticket-cap');
+      if (ticketCap) {
+        var capTmpl = lang === 'bn'
+          ? (ticketCap.getAttribute('data-bn-tmpl') || '{total}টির মধ্যে {remaining}টি বাকি')
+          : (ticketCap.getAttribute('data-en-tmpl') || '{remaining} of {total} left');
+        var remDigit = lang === 'bn' ? toBengaliDigits(remaining) : String(remaining);
+        var totDigit = lang === 'bn' ? toBengaliDigits(total) : String(total);
+        ticketCap.textContent = capTmpl.replace('{remaining}', remDigit).replace('{total}', totDigit);
+      }
+    });
+  }
+
+  function initMenuBatchStock() {
+    updateMenuStockDisplay(currentLang());
+
+    // Connect Order Batch buttons on menu cards to reserve & decrement stock with interactive toast
+    var orderBtns = document.querySelectorAll('.order-batch-btn');
+    orderBtns.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var batchCode = btn.getAttribute('data-batch-code');
+        if (!batchCode) return;
+
+        var lang = currentLang();
+        var stockState = getBatchStockState();
+        if (stockState[batchCode] && stockState[batchCode].remaining > 0) {
+          stockState[batchCode].remaining -= 1;
+          saveBatchStockState(stockState);
+          updateMenuStockDisplay(lang);
+
+          var itemName = DEFAULT_BATCH_DATA[batchCode]
+            ? (lang === 'bn' ? DEFAULT_BATCH_DATA[batchCode].nameBn : DEFAULT_BATCH_DATA[batchCode].nameEn)
+            : batchCode;
+          var leftNum = lang === 'bn' ? toBengaliDigits(stockState[batchCode].remaining) : String(stockState[batchCode].remaining);
+
+          var toastMsg = lang === 'bn'
+            ? itemName + ' এর জন্য বুকিং সংরক্ষিত! আজকের ব্যাচে আর ' + leftNum + 'টি বাকি।'
+            : itemName + ' selected! ' + leftNum + ' units remaining in today\'s batch.';
+
+          showToast(toastMsg, '⚡');
+        }
+      });
     });
   }
 })();

@@ -81,8 +81,12 @@
       <div class="grid3">
 
         <!-- Cheesecake -->
-        <article class="card">
+        <article class="card" data-batch-code="HH-01" data-total-cap="10" data-initial-remaining="3" data-name-en="Signature Almond Cheesecake" data-name-bn="সিগনেচার আমন্ড চিজকেক">
           <div class="img-ph aspect-43">
+            <div class="batch-stock-pill" aria-label="Limited Daily Stock Status">
+              <span class="stock-live-dot" aria-hidden="true"></span>
+              <span class="stock-pill-text" data-en="Only 3 left today" data-bn="আজ মাত্র ৩টি বাকি">Only 3 left today</span>
+            </div>
             <img src="media/cheesecake-001.jpg" alt="Cheesecake" onerror="this.style.display='none';">
             <div class="ph-fallback">
               <div>
@@ -100,6 +104,32 @@
               </div>
               <span class="code">HH-01</span>
             </div>
+
+            <!-- Dynamic Batch Stock Urgency Meter -->
+            <div class="batch-stock-status" data-batch="HH-01" aria-live="polite">
+              <div class="batch-stock-header">
+                <div class="batch-stock-lead">
+                  <span class="stock-pulse-indicator" aria-hidden="true">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-core"></span>
+                  </span>
+                  <span class="stock-lead-text"
+                        data-en-tmpl="Only <strong>{remaining} items</strong> left in today's batch"
+                        data-bn-tmpl="আজকের ব্যাচে মাত্র <strong>{remaining}টি</strong> অবশিষ্ট">
+                    Only <strong>3 items</strong> left in today's batch
+                  </span>
+                </div>
+                <span class="batch-claimed-tag"
+                      data-en-tmpl="{claimed}% claimed"
+                      data-bn-tmpl="{claimed}% শেষ">
+                  70% claimed
+                </span>
+              </div>
+              <div class="batch-progress-track" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="10" aria-label="Cheesecake batch production remaining">
+                <div class="batch-progress-fill" style="width: 70%;"></div>
+              </div>
+            </div>
+
             <p class="tagline" data-en="Baked in small batches, finished with a dark chocolate glaze." data-bn="ছোট ব্যাচে বেক করা, ডার্ক চকোলেট গ্লেজ দিয়ে ফিনিশড।">Baked in small batches, finished with a dark chocolate glaze.</p>
             <p class="description" data-en="A dense, slow-baked cheesecake layered with toasted almond and a signature chocolate glaze. Limited daily batches — no shortcuts." data-bn="ধীরে বেক করা ঘন চিজকেক, টোস্টেড আমন্ড আর সিগনেচার চকোলেট গ্লেজের লেয়ার সহ। দৈনিক সীমিত ব্যাচ — কোনো শর্টকাট নেই।">A dense, slow-baked cheesecake layered with toasted almond and a signature chocolate glaze. Limited daily batches — no shortcuts.</p>
             <div class="ticket">
@@ -107,19 +137,23 @@
               <dl>
                 <div class="ticket-spec"><dt data-en="batch size" data-bn="ব্যাচ সাইজ">batch size</dt><dd>৪.০ কেজি / সাইকেল</dd></div>
                 <div class="ticket-spec"><dt data-en="format" data-bn="ফরম্যাট">format</dt><dd data-en="whole · slice" data-bn="গোটা · স্লাইস">whole · slice</dd></div>
-                <div class="ticket-spec"><dt data-en="daily cap" data-bn="দৈনিক সীমা">daily cap</dt><dd data-en="limited" data-bn="সীমিত">limited</dd></div>
+                <div class="ticket-spec"><dt data-en="daily cap" data-bn="দৈনিক সীমা">daily cap</dt><dd class="batch-ticket-cap" data-en-tmpl="{remaining} of {total} left" data-bn-tmpl="{total}টির মধ্যে {remaining}টি বাকি">3 of 10 left</dd></div>
               </dl>
             </div>
             <div class="card-footer">
               <span class="price tbc" data-en="Price — TBC" data-bn="দাম — শীঘ্রই">Price — TBC</span>
-              <a href="#order" class="btn btn-secondary btn-sm" data-en="Order" data-bn="অর্ডার করুন">Order</a>
+              <a href="#order" class="btn btn-secondary btn-sm order-batch-btn" data-batch-code="HH-01" data-en="Order Batch" data-bn="ব্যাচ অর্ডার">Order Batch</a>
             </div>
           </div>
         </article>
 
         <!-- Singara Chaat -->
-        <article class="card">
+        <article class="card" data-batch-code="HH-02" data-total-cap="24" data-initial-remaining="7" data-name-en="Signature Singara Chaat" data-name-bn="সিগনেচার সিঙ্গারা চাট">
           <div class="img-ph aspect-43">
+            <div class="batch-stock-pill" aria-label="Limited Daily Stock Status">
+              <span class="stock-live-dot" aria-hidden="true"></span>
+              <span class="stock-pill-text" data-en="7 portions remaining" data-bn="৭টি পোরশন বাকি">7 portions remaining</span>
+            </div>
             <img src="media/chaat-001.jpg" alt="Singara Chaat" onerror="this.style.display='none';">
             <div class="ph-fallback">
               <div>
@@ -137,6 +171,32 @@
               </div>
               <span class="code">HH-02</span>
             </div>
+
+            <!-- Dynamic Batch Stock Urgency Meter -->
+            <div class="batch-stock-status" data-batch="HH-02" aria-live="polite">
+              <div class="batch-stock-header">
+                <div class="batch-stock-lead">
+                  <span class="stock-pulse-indicator" aria-hidden="true">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-core"></span>
+                  </span>
+                  <span class="stock-lead-text"
+                        data-en-tmpl="Only <strong>{remaining} items</strong> left in today's batch"
+                        data-bn-tmpl="আজকের ব্যাচে মাত্র <strong>{remaining}টি</strong> অবশিষ্ট">
+                    Only <strong>7 items</strong> left in today's batch
+                  </span>
+                </div>
+                <span class="batch-claimed-tag"
+                      data-en-tmpl="{claimed}% claimed"
+                      data-bn-tmpl="{claimed}% শেষ">
+                  71% claimed
+                </span>
+              </div>
+              <div class="batch-progress-track" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="24" aria-label="Singara Chaat batch production remaining">
+                <div class="batch-progress-fill" style="width: 71%;"></div>
+              </div>
+            </div>
+
             <p class="tagline" data-en="Crisp singara, chickpea chaat, tamarind-date-jaggery sauce." data-bn="মচমচে সিঙ্গারা, ছোলার চাট, তেঁতুল-খেজুর-গুড়ের সস।">Crisp singara, chickpea chaat, tamarind-date-jaggery sauce.</p>
             <p class="description" data-en="Not the singara you know. Crisp shell, warm chickpea-potato chaat base, and a proprietary tamarind-date-jaggery sauce — assembled fresh, component by component." data-bn="তোমার চেনা সিঙ্গারা না। মচমচে খোসা, গরম ছোলা-আলুর চাট বেস, আর নিজস্ব তেঁতুল-খেজুর-গুড়ের সস — প্রতিটি উপাদান আলাদাভাবে তাজা অ্যাসেম্বল করা।">Not the singara you know. Crisp shell, warm chickpea-potato chaat base, and a proprietary tamarind-date-jaggery sauce — assembled fresh, component by component.</p>
             <div class="ticket">
@@ -144,19 +204,23 @@
               <dl>
                 <div class="ticket-spec"><dt data-en="shell" data-bn="খোসা">shell</dt><dd data-en="fried to order" data-bn="অর্ডার অনুযায়ী ভাজা">fried to order</dd></div>
                 <div class="ticket-spec"><dt data-en="sauce" data-bn="সস">sauce</dt><dd data-en="tamarind · date · jaggery" data-bn="তেঁতুল · খেজুর · গুড়">tamarind · date · jaggery</dd></div>
-                <div class="ticket-spec"><dt data-en="assembly" data-bn="অ্যাসেম্বলি">assembly</dt><dd data-en="component-separated" data-bn="উপাদান আলাদা">component-separated</dd></div>
+                <div class="ticket-spec"><dt data-en="daily cap" data-bn="দৈনিক সীমা">daily cap</dt><dd class="batch-ticket-cap" data-en-tmpl="{remaining} of {total} left" data-bn-tmpl="{total}টির মধ্যে {remaining}টি বাকি">7 of 24 left</dd></div>
               </dl>
             </div>
             <div class="card-footer">
               <span class="price tbc" data-en="Price — TBC" data-bn="দাম — শীঘ্রই">Price — TBC</span>
-              <a href="#order" class="btn btn-secondary btn-sm" data-en="Order" data-bn="অর্ডার করুন">Order</a>
+              <a href="#order" class="btn btn-secondary btn-sm order-batch-btn" data-batch-code="HH-02" data-en="Order Batch" data-bn="ব্যাচ অর্ডার">Order Batch</a>
             </div>
           </div>
         </article>
 
         <!-- Jar Dessert -->
-        <article class="card">
+        <article class="card" data-batch-code="HH-03" data-total-cap="16" data-initial-remaining="4" data-name-en="Chocolate Jar Dessert" data-name-bn="চকোলেট জার ডেজার্ট">
           <div class="img-ph aspect-43">
+            <div class="batch-stock-pill" aria-label="Limited Daily Stock Status">
+              <span class="stock-live-dot" aria-hidden="true"></span>
+              <span class="stock-pill-text" data-en="Only 4 jars left" data-bn="আজ মাত্র ৪টি জার বাকি">Only 4 jars left</span>
+            </div>
             <img src="media/jar-001.jpg" alt="Chocolate Jar Dessert" onerror="this.style.display='none';">
             <div class="ph-fallback">
               <div>
@@ -174,6 +238,32 @@
               </div>
               <span class="code">HH-03</span>
             </div>
+
+            <!-- Dynamic Batch Stock Urgency Meter -->
+            <div class="batch-stock-status" data-batch="HH-03" aria-live="polite">
+              <div class="batch-stock-header">
+                <div class="batch-stock-lead">
+                  <span class="stock-pulse-indicator" aria-hidden="true">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-core"></span>
+                  </span>
+                  <span class="stock-lead-text"
+                        data-en-tmpl="Only <strong>{remaining} items</strong> left in today's batch"
+                        data-bn-tmpl="আজকের ব্যাচে মাত্র <strong>{remaining}টি</strong> অবশিষ্ট">
+                    Only <strong>4 items</strong> left in today's batch
+                  </span>
+                </div>
+                <span class="batch-claimed-tag"
+                      data-en-tmpl="{claimed}% claimed"
+                      data-bn-tmpl="{claimed}% শেষ">
+                  75% claimed
+                </span>
+              </div>
+              <div class="batch-progress-track" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="16" aria-label="Chocolate Jar batch production remaining">
+                <div class="batch-progress-fill" style="width: 75%;"></div>
+              </div>
+            </div>
+
             <p class="tagline" data-en="Chilled, layered, and ready in one hand." data-bn="ঠান্ডা, লেয়ারড, এক হাতেই খাওয়ার মতো।">Chilled, layered, and ready in one hand.</p>
             <p class="description" data-en="A chilled chocolate jar dessert, layered and portioned for one. The accessible entry point beside the cheesecake and the chaat." data-bn="একটি ঠান্ডা চকোলেট জার ডেজার্ট, এক জনের জন্য লেয়ার করে পোরশন করা। চিজকেক আর চাটের পাশে সহজলভ্য এন্ট্রি-পয়েন্ট।">A chilled chocolate jar dessert, layered and portioned for one. The accessible entry point beside the cheesecake and the chaat.</p>
             <div class="ticket">
@@ -181,12 +271,12 @@
               <dl>
                 <div class="ticket-spec"><dt data-en="format" data-bn="ফরম্যাট">format</dt><dd data-en="single-serve jar" data-bn="একক-পরিবেশন জার">single-serve jar</dd></div>
                 <div class="ticket-spec"><dt data-en="temp" data-bn="তাপমাত্রা">temp</dt><dd data-en="chilled" data-bn="ঠান্ডা">chilled</dd></div>
-                <div class="ticket-spec"><dt data-en="daily cap" data-bn="দৈনিক সীমা">daily cap</dt><dd data-en="limited" data-bn="সীমিত">limited</dd></div>
+                <div class="ticket-spec"><dt data-en="daily cap" data-bn="দৈনিক সীমা">daily cap</dt><dd class="batch-ticket-cap" data-en-tmpl="{remaining} of {total} left" data-bn-tmpl="{total}টির মধ্যে {remaining}টি বাকি">4 of 16 left</dd></div>
               </dl>
             </div>
             <div class="card-footer">
               <span class="price tbc" data-en="Price — TBC" data-bn="দাম — শীঘ্রই">Price — TBC</span>
-              <a href="#order" class="btn btn-secondary btn-sm" data-en="Order" data-bn="অর্ডার করুন">Order</a>
+              <a href="#order" class="btn btn-secondary btn-sm order-batch-btn" data-batch-code="HH-03" data-en="Order Batch" data-bn="ব্যাচ অর্ডার">Order Batch</a>
             </div>
           </div>
         </article>
@@ -822,7 +912,7 @@
   </section>
 
   <!-- ILISH — large cinematic feature (opening story) -->
-  <section class="story-feature">
+  <section id="story-shorshe-ilish" class="story-feature reveal">
     <div class="feature-media img-ph">
       <img src="media/shorshe-ilish-001.jpg" alt="Shorshe Ilish — hilsa fish in mustard gravy" onerror="this.style.display='none';">
       <div class="ph-fallback">
@@ -843,6 +933,34 @@
       <div class="wrap">
         <p data-en="Ilish holds an exceptional place in Bangladeshi cooking — not one recipe, but many, each shaped by mustard, oil, spice and timing. Shown here is shorshe ilish, a thick mustard gravy and one of its most recognised forms." data-bn="বাংলাদেশি রান্নায় ইলিশের একটা ব্যতিক্রমী জায়গা আছে — একটা রেসিপি না, বরং অনেকগুলো, প্রতিটা সরিষা, তেল, মসলা আর সময়ের ভিন্ন ভিন্ন যুক্তিতে তৈরি। এখানে দেখানো হয়েছে সরিষা ইলিশ — একটা ঘন সরিষার ঝোল, এর সবচেয়ে পরিচিত রূপগুলোর একটা।">Ilish holds an exceptional place in Bangladeshi cooking — not one recipe, but many, each shaped by mustard, oil, spice and timing. Shown here is shorshe ilish, a thick mustard gravy and one of its most recognised forms.</p>
         <p data-en="A drier fry and a much lighter jhol follow next — two more entries in the same family, each telling a different part of the same fish's story." data-bn="এরপর আসছে একটা শুকনো ভাজা আর অনেক হালকা একটা ঝোল — একই পরিবারের আরও দুটো এন্ট্রি, প্রতিটা একই মাছের গল্পের ভিন্ন একটা অংশ বলছে।">A drier fry and a much lighter jhol follow next — two more entries in the same family, each telling a different part of the same fish's story.</p>
+        
+        <!-- Story Share Widget -->
+        <div class="story-share-bar"
+             data-story-id="story-shorshe-ilish"
+             data-story-title-en="Shorshe Ilish — Mustard Gravy Hilsa"
+             data-story-title-bn="সরিষা ইলিশ — সরিষা বাটার ঘন ঝোল"
+             data-story-desc-en="Ilish holds an exceptional place in Bangladeshi cooking — shorshe ilish is a thick mustard gravy and one of its most recognised forms."
+             data-story-desc-bn="বাংলাদেশি রান্নায় ইলিশের এক অনন্য স্থান — সরিষা ইলিশের চিরায়ত রন্ধনশৈলী।">
+          <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+          <div class="story-share-actions">
+            <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Shorshe Ilish on WhatsApp" title="WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              <span>WhatsApp</span>
+            </a>
+            <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Shorshe Ilish on Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Shorshe Ilish on X" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+              <span>X</span>
+            </a>
+            <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -851,7 +969,7 @@
     <div class="wrap">
 
       <!-- ILISH FRY -->
-      <article class="fish-story reveal">
+      <article id="story-ilish-vaja" class="fish-story reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/ilish-fry-001.jpg" alt="Ilish fry with onion and green chili" onerror="this.style.display='none';">
@@ -871,11 +989,39 @@
           <div class="fish-body">
             <p data-en="A drier preparation than the gravy versions of ilish — fried until the edges darken, then finished with onion and green chili rather than a sauce." data-bn="ইলিশের ঝোল-সংস্করণগুলোর চেয়ে শুকনো একটা প্রণালী — কিনারা গাঢ় না হওয়া পর্যন্ত ভাজা হয়, এরপর সসের বদলে পেঁয়াজ আর কাঁচামরিচ দিয়ে শেষ করা হয়।">A drier preparation than the gravy versions of ilish — fried until the edges darken, then finished with onion and green chili rather than a sauce.</p>
           </div>
+          
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-ilish-vaja"
+               data-story-title-en="Ilish Vaja — Fried Hilsa"
+               data-story-title-bn="ইলিশ ভাজা — পেঁয়াজ ও কাঁচামরিচ সহ"
+               data-story-desc-en="A drier preparation than gravy versions — fried until the edges darken, finished with onion and green chili."
+               data-story-desc-bn="ইলিশের শুকনো ও মচমচে রন্ধনশৈলী — পেঁয়াজ আর কাঁচামরিচ দিয়ে শেষ করা।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Ilish Vaja on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Ilish Vaja on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Ilish Vaja on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- LIGHT ILISH JHOL -->
-      <article class="fish-story reverse reveal">
+      <article id="story-ilish-jhol" class="fish-story reverse reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/ilish-jhol-001.jpg" alt="Light Ilish Jhol with green chili" onerror="this.style.display='none';">
@@ -895,11 +1041,39 @@
           <div class="fish-body">
             <p data-en="Where shorshe ilish is thick and pungent, this jhol stays thin and mild — green chili is the only real seasoning beyond turmeric." data-bn="সরিষা ইলিশ যেখানে ঘন আর তীব্র, এই ঝোল থাকে পাতলা আর হালকা — হলুদ ছাড়া কাঁচামরিচই এখানে একমাত্র বাড়তি মসলা।">Where shorshe ilish is thick and pungent, this jhol stays thin and mild — green chili is the only real seasoning beyond turmeric.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-ilish-jhol"
+               data-story-title-en="Halka Ilish Jhol — Light Hilsa Stew"
+               data-story-title-bn="হালকা ইলিশ ঝোল — কাঁচামরিচের সুবাস সহ"
+               data-story-desc-en="Where shorshe ilish is thick and pungent, this jhol stays thin and mild with green chili."
+               data-story-desc-bn="হলুদ আর কাঁচামরিচ দিয়ে রান্না করা হালকা ও পরিমিত ইলিশের পাতলা ঝোল।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Halka Ilish Jhol on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Halka Ilish Jhol on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Halka Ilish Jhol on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- BAILA JHURI -->
-      <article class="fish-story reveal">
+      <article id="story-baila-jhuri" class="fish-story reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/baila-jhuri-001.jpg" alt="Baila fish jhuri, shredded and stir-fried" onerror="this.style.display='none';">
@@ -919,11 +1093,39 @@
           <div class="fish-body">
             <p data-en="Jhuri means shredded — the fish is broken down and stir-fried dry with onion and green chili, closer to a bhuna than a curry." data-bn="ঝুরি মানে ছিঁড়ে ছিঁড়ে করা — মাছ ভেঙে পেঁয়াজ আর কাঁচামরিচ দিয়ে শুকনো করে ভাজা হয়, ঝোলের চেয়ে ভুনার কাছাকাছি।">Jhuri means shredded — the fish is broken down and stir-fried dry with onion and green chili, closer to a bhuna than a curry.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-baila-jhuri"
+               data-story-title-en="Baila Jhuri — Shredded Fish Stir-Fry"
+               data-story-title-bn="বাইলা মাছ ঝুড়ি — শুকনো ভাজা"
+               data-story-desc-en="Jhuri means shredded — the fish is broken down and stir-fried dry with onion and green chili."
+               data-story-desc-bn="মাছ ভেঙে পেঁয়াজ ও কাঁচামরিচ দিয়ে শুকনো করে ভাজা সুস্বাদু বাইলা ঝুড়ি।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Baila Jhuri on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Baila Jhuri on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Baila Jhuri on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- TATKINI -->
-      <article class="fish-story reverse reveal">
+      <article id="story-tatkini" class="fish-story reverse reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/tatkini-001.jpg" alt="Tatkini fish with finger-cut potato and eggplant" onerror="this.style.display='none';">
@@ -943,11 +1145,39 @@
           <div class="fish-body">
             <p data-en="Small Tatkini fish cooked with thin finger-length cuts of potato and eggplant in a light Bengali curry." data-bn="ছোট টাটকিনি মাছ, আলু আর বেগুন চিকন আঙুল-লম্বা করে কেটে, হালকা বাংলা ঝোলে রান্না করা।">Small Tatkini fish cooked with thin finger-length cuts of potato and eggplant in a light Bengali curry.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-tatkini"
+               data-story-title-en="Tatkini Chorchori — Precision Cut Vegetable Curry"
+               data-story-title-bn="টাটকিনি চচ্চড়ি — আলু ও বেগুন সহ"
+               data-story-desc-en="Small Tatkini fish cooked with thin finger-length cuts of potato and eggplant in a light Bengali curry."
+               data-story-desc-bn="আলু আর বেগুন চিকন আঙুল-লম্বা করে কেটে হালকা ঝোলে তৈরি টাটকিনি।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Tatkini story on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Tatkini story on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Tatkini story on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- PANGASH — HEAVY GRAVY -->
-      <article class="fish-story reveal">
+      <article id="story-pangash-heavy" class="fish-story reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/pangash-heavy-001.jpg" alt="Pangash fish in heavy Bengali gravy" onerror="this.style.display='none';">
@@ -967,11 +1197,39 @@
           <div class="fish-body">
             <p data-en="Pangash cooked in a rich, moist Bengali gravy with strong spices." data-bn="পাঙাশ রান্না করা হয় ঘন, ভেজা বাংলা ঝোলে, তীব্র মসলা দিয়ে।">Pangash cooked in a rich, moist Bengali gravy with strong spices.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-pangash-heavy"
+               data-story-title-en="Pangash — Heavy Bengali Gravy"
+               data-story-title-bn="পাঙাশ — ঘন মশলার গ্রেভি"
+               data-story-desc-en="Pangash cooked in a rich, moist Bengali gravy with bold spices — different fish, different rules."
+               data-story-desc-bn="তীব্র মশলা আর ঘন ভেজা বাংলা ঝোলে রান্না করা পাঙাশ।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Pangash story on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Pangash story on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Pangash story on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- CHINGRI MALAI CURRY -->
-      <article class="fish-story reverse reveal">
+      <article id="story-chingri-malai" class="fish-story reverse reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/chingri-malai-001.jpg" alt="Chingri malai curry, prawn in coconut gravy" onerror="this.style.display='none';">
@@ -991,11 +1249,39 @@
           <div class="fish-body">
             <p data-en="Prawn cooked in a coconut-milk gravy — malai curry moves in a completely different direction from any fish preparation shown here." data-bn="চিংড়ি নারকেল দুধের ঝোলে রান্না করা — মালাই কারি এখানকার যেকোনো মাছের প্রণালী থেকে সম্পূর্ণ ভিন্ন দিকে যায়।">Prawn cooked in a coconut-milk gravy — malai curry moves in a completely different direction from any fish preparation shown here.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-chingri-malai"
+               data-story-title-en="Chingri Malai Curry — Coconut Prawn Classic"
+               data-story-title-bn="চিংড়ি মালাই কারি — নারকেল দুধের ঝোল"
+               data-story-desc-en="Prawn cooked in a coconut-milk gravy — malai curry moves in a completely different culinary direction."
+               data-story-desc-bn="নারকেল দুধের মিহি ঝোলে রান্না চিংড়ি মালাই কারি।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Chingri Malai Curry on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Chingri Malai Curry on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Chingri Malai Curry on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- NARKELI CHELA -->
-      <article class="fish-story reveal">
+      <article id="story-narkeli-chela" class="fish-story reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/narkeli-chela-001.jpg" alt="Narkeli Chela, deep fried with coconut and green onion" onerror="this.style.display='none';">
@@ -1015,11 +1301,39 @@
           <div class="fish-body">
             <p data-en="Small Chela fish deep-fried until crisp, finished with coconut flakes and green onion." data-bn="ছোট চেলা মাছ মচমচে করে ডুবো তেলে ভাজা, নারকেলের কুচি আর কাঁচা পেঁয়াজ-কলি দিয়ে শেষ করা।">Small Chela fish deep-fried until crisp, finished with coconut flakes and green onion.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-narkeli-chela"
+               data-story-title-en="Narkeli Chela — Crisp Fish with Coconut"
+               data-story-title-bn="নারকেলি চেলা — মচমচে ভাজা"
+               data-story-desc-en="Small Chela fish deep-fried until crisp, finished with coconut flakes and green onion."
+               data-story-desc-bn="নারকেলের কুচি আর কাঁচা পেঁয়াজ-কলি দিয়ে মচমচে ভাজা চেলা মাছ।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Narkeli Chela story on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Narkeli Chela story on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Narkeli Chela story on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- RUI DEEP FRY -->
-      <article class="fish-story reverse reveal">
+      <article id="story-rui-deep-fry" class="fish-story reverse reveal">
         <div class="fish-img">
           <div class="img-ph aspect-54">
             <img src="media/rui-deep-fry-001.jpg" alt="Rui fish steaks, deep fried, with green chili and lemon" onerror="this.style.display='none';">
@@ -1039,6 +1353,34 @@
           <div class="fish-body">
             <p data-en="Rui steaks deep-fried until dark and firm, served dry with green chili and a wedge of lemon." data-bn="রুই মাছের টুকরো গাঢ় আর শক্ত হওয়া পর্যন্ত ডুবো তেলে ভাজা, কাঁচামরিচ আর এক টুকরো লেবু দিয়ে শুকনো করে পরিবেশন।">Rui steaks deep-fried until dark and firm, served dry with green chili and a wedge of lemon.</p>
           </div>
+
+          <!-- Share Bar -->
+          <div class="story-share-bar"
+               data-story-id="story-rui-deep-fry"
+               data-story-title-en="Rui Deep Fry — Golden Fried Rui Steaks"
+               data-story-title-bn="রুই ডিপ ফ্রাই — মচমচে রুই মাছ ভাজা"
+               data-story-desc-en="Rui steaks deep-fried until dark and firm, served dry with green chili and a wedge of lemon."
+               data-story-desc-bn="কাঁচামরিচ আর লেবু দিয়ে পরিবেশন করা ডুবো তেলে ভাজা রুই।">
+            <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+            <div class="story-share-actions">
+              <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Rui Deep Fry on WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Rui Deep Fry on Facebook" title="Facebook">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Rui Deep Fry on X" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>X</span>
+              </a>
+              <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -1046,7 +1388,7 @@
   </section>
 
   <!-- CHINGRI UNIVERSE — bonus, still being explored -->
-  <section class="story-section story-chingri reveal">
+  <section id="story-chingri-universe" class="story-section story-chingri reveal">
     <div class="wrap">
       <span class="eyebrow" data-en="Still being explored" data-bn="এখনও অনুসন্ধান চলছে">Still being explored</span>
       <h2 data-en="Chingri is a universe of its own." data-bn="চিংড়ি নিজেই একটা মহাবিশ্ব।">Chingri is a universe of its own.</h2>
@@ -1068,17 +1410,73 @@
           </div>
         </div>
       </div>
+
+      <!-- Share Bar -->
+      <div class="story-share-bar"
+           data-story-id="story-chingri-universe"
+           data-story-title-en="The Chingri Universe — Bagda &amp; Galda"
+           data-story-title-bn="চিংড়ির মহাবিশ্ব — বাগদা ও গলদা"
+           data-story-desc-en="Exploring the distinct textures and regional preparations of tiger and freshwater prawns in Bengal."
+           data-story-desc-bn="বাঙালি রন্ধনশৈলীতে বাগদা ও গলদা চিংড়ির বৈচিত্র্যময় স্বাদ ও ব্যাকরণ।">
+        <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+        <div class="story-share-actions">
+          <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Chingri Universe on WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Chingri Universe on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Chingri Universe on X" title="X (Twitter)">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <span>X</span>
+          </a>
+          <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FAMILY STORY -->
-  <section class="story-section story-why reveal">
+  <section id="story-family" class="story-section story-why reveal">
     <div class="wrap">
       <span class="eyebrow" data-en="Family" data-bn="পরিবার">Family</span>
       <h2 data-en="Where this story begins" data-bn="যেখানে এই গল্প শুরু">Where this story begins</h2>
       <p class="desc" data-en="This interest is deeply personal." data-bn="এই আগ্রহটা একেবারেই ব্যক্তিগত।">This interest is deeply personal.</p>
       <p class="desc" data-en="My father was connected to the restaurant world around Golanda and Daulatdia during the Pakistan period. My mother became an exceptional home cook, particularly with fish." data-bn="পাকিস্তান আমলে গোয়ালন্দ আর দৌলতদিয়ার আশেপাশের রেস্তোরাঁ জগতের সাথে আমার বাবার যোগাযোগ ছিল। আমার মা একজন অসাধারণ ঘরোয়া রাঁধুনি হয়ে উঠেছিলেন, বিশেষ করে মাছ রান্নায়।">My father was connected to the restaurant world around Golanda and Daulatdia during the Pakistan period. My mother became an exceptional home cook, particularly with fish.</p>
       <p class="desc" data-en="Much of what I know came from watching, tasting and remembering. This archive begins there." data-bn="আমি যা জানি তার বেশিরভাগই এসেছে দেখে, স্বাদ নিয়ে আর মনে রেখে। এই আর্কাইভ সেখান থেকেই শুরু।">Much of what I know came from watching, tasting and remembering. This archive begins there.</p>
+
+      <!-- Share Bar -->
+      <div class="story-share-bar"
+           data-story-id="story-family"
+           data-story-title-en="Where This Story Begins — Family Heritage"
+           data-story-title-bn="যেখানে এই গল্প শুরু — পারিবারিক ঐতিহ্য"
+           data-story-desc-en="A personal archive rooted in the culinary memories of Goalondo, Daulatdia, and maternal kitchen traditions."
+           data-story-desc-bn="গোয়ালন্দ ও দৌলতদিয়ার স্মৃতি এবং মায়ের হাতের মাছ রান্নার পারিবারিক ঐতিহ্য।">
+        <span class="story-share-label" data-en="Share story:" data-bn="গল্পটি শেয়ার করুন:">Share story:</span>
+        <div class="story-share-actions">
+          <a href="#" class="share-btn share-wa" target="_blank" rel="noopener noreferrer" data-share="whatsapp" aria-label="Share Family story on WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a href="#" class="share-btn share-fb" target="_blank" rel="noopener noreferrer" data-share="facebook" aria-label="Share Family story on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="#" class="share-btn share-x" target="_blank" rel="noopener noreferrer" data-share="twitter" aria-label="Share Family story on X" title="X (Twitter)">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <span>X</span>
+          </a>
+          <button type="button" class="share-btn share-copy" data-share="copy" aria-label="Copy direct story link" title="Copy Link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span class="copy-text" data-en="Copy Link" data-bn="লিংক কপি">Copy Link</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
